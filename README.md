@@ -1,8 +1,7 @@
 # note-app-mern
 
-<<<<<<<<<<<<<< ✨ Codeium Command ⭐ >>>>>>>>>>>>>>>>
+**Selamat datang di project "note-app-mern"!**
 
-Selamat datang di project "note-app-mern"!
 Ya, itu benar. Project ini menggunakan stack yang populer antara lain Express, MongoDB, Node.js, React.js, Tailwind CSS, Redux, dan juga framework untuk manajemen state yang lebih canggih yaitu Redux Toolkit.
 
 Project ini bertujuan untuk membuat sebuah aplikasi sederhana yaitu sebuah aplikasi note-taking. Dimana kita dapat membuat, mengubah, dan menghapus catatan yang kita inginkan.
@@ -21,11 +20,10 @@ Jadi, jangan ragu untuk membaca dan mempelajari project ini. Semoga dengan memba
 
 Namun, pastikan untuk membaca dan mempelajari project ini dengan cermat. Karena dengan membaca project ini, Anda dapat memiliki pemahaman yang lebih baik dalam coding dan juga memahami bagaimana membuat sebuah aplikasi yang sederhana dengan menggunakan stack yang lebih canggih.
 
-Dengan demikian, berikut adalah latar belakang dan tujuan dari project ini:
+> Dengan demikian, berikut adalah latar belakang dan tujuan dari project ini:
+> Menggunakan Express.js sebagai framework web server dan menggunakan MongoDB sebagai database NoSQL.
+> Menggunakan React.js sebagai framework untuk membuat antarmuka pengguna.
+> Menggunakan Redux Toolkit untuk manajemen state pada aplikasi.
+> Menggunakan Tailwind CSS untuk membuat desain antarmuka pengguna yang responsif.
 
-1. Menggunakan Express.js sebagai framework web server dan menggunakan MongoDB sebagai database NoSQL.
-2. Menggunakan React.js sebagai framework untuk membuat antarmuka pengguna.
-3. Menggunakan Redux Toolkit untuk manajemen state pada aplikasi.
-4. Menggunakan Tailwind CSS untuk membuat desain antarmuka pengguna yang responsif.
-
-Mas Kumis Dev
+**Mas Kumis Dev**
