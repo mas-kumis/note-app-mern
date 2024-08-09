@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -13,8 +13,24 @@ const Navbar = () => {
             />
           </div>
           <div className="flex space-x-4">
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? "font-bold" : "")}
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/login"
+              className={({ isActive }) => (isActive ? "font-bold" : "")}
+            >
+              Login
+            </NavLink>
+            <NavLink
+              to="/register"
+              className={({ isActive }) => (isActive ? "font-bold" : "")}
+            >
+              Register
+            </NavLink>
           </div>
         </div>
       </nav>
@@ -23,3 +39,11 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+// NavLink adalah komponen dari react-router-dom yang digunakan untuk membuat link yang mengarah ke halaman lain di dalam aplikasi.Dengan menggunakan NavLink, kita dapat menambahkan class styling khusus ketika link tersebut sedang aktif (aktif).
+
+// Contoh penggunaannya:
+
+// <NavLink to="/login" className={({ isActive }) => (isActive ? "font-bold" : "")}> Login </NavLink>
+
+// Dalam contoh di atas, ketika link Login sedang aktif, class "font-bold" akan ditambahkan ke elemen tersebut.
