@@ -6,4 +6,16 @@ const createNotes = (req, res) => {
   res.json("createNotes");
 };
 
-export { createNotes, getNotes };
+const getNotesById = (req, res) => {
+  res.json("getNotesById");
+};
+
+const updateNotes = (req, res) => {
+  res.json("updateNotes");
+};
+
+const deleteNotes = (req, res) => {
+  res.json("deleteNotes");
+};
+
+export { createNotes, getNotes, getNotesById, updateNotes, deleteNotes };

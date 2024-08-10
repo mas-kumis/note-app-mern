@@ -17,7 +17,7 @@ const port = process.env.PORT;
 // function yang digunakan untuk memberi tahu Express bahwa kita akan mengirimkan data JSON dari client ke server.
 app.use(express.json());
 
-// Function yang ada di dalam "app.use()" adalah NoteRoutes, yang artinya file NoteRoutes.js akan dijalankan saat ada request masuk ke dalam server dengan path yang sesuai dengan "/notes".
+
 app.use("/notes", NoteRoutes);
 
 // "app.listen()" adalah metode yang digunakan untuk memulai server dan mulai mendengarkan perintah dari code kita.
