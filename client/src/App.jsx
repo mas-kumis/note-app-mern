@@ -9,6 +9,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/RegisterPage";
+import Page from "./pages/Page";
+import CreatePage from "./pages/CreatePage";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/notes" element={<Page />} />
+        <Route path="/newnotes" element={<CreatePage />} />
       </Routes>
     </BrowserRouter>
   );
