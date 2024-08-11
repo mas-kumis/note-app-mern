@@ -3,6 +3,7 @@
 import { useState } from "react";
 import noted from "../data/notes";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 function Notes() {
   const [isOpen, setIsOpen] = useState(null);
@@ -53,5 +54,9 @@ function Notes() {
     </div>
   );
 }
+
+Notes.propTypes = {
+  title: PropTypes.any,
+};
 
 export default Notes;

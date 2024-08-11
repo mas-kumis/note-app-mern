@@ -1,23 +1,20 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useSelector, useDispatch } from "react-redux";
-import { useLoginMutation } from "../store/api/adminApiSlice";
-import { setCredentials } from "../store/auth/authSlice";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [login, { isLoading }] = useLoginMutation();
-  const { adminInfo } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
+    const adminInfo = localStorage.getItem("adminInfo");
     if (adminInfo) {
       navigate("/notes");
     }
-  }, [navigate, adminInfo]);
+  }, [navigate]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -26,15 +23,27 @@ const Login = () => {
       return;
     }
     try {
-      const res = await login({ email, password }).unwrap();
-      dispatch(setCredentials({ ...res }));
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      setLoading(true);
+      const { data } = await axios.post(
+        "/api/admin/auth",
+        { email, password },
+        config
+      );
+      localStorage.setItem("adminInfo", JSON.stringify(data));
+      setLoading(false);
       toast.success("Login Successful");
       navigate("/notes");
-    } catch (err) {
-      toast.error(err?.data?.message || err.error);
-      console.log(err);
+    } catch (error) {
+      setLoading(false);
+      toast.error(error?.response?.data?.message || error.error);
     }
   };
+
   return (
     <section className="h-[500px] w-full flex items-center justify-center">
       <form
@@ -66,7 +75,7 @@ const Login = () => {
         </div>
         {/*div for button */}
         <div className="">
-          {isLoading ? (
+          {loading ? (
             <button
               type="submit"
               className="bg-blue-500 hover:bg-blue-700 p-2 w-[300px] text-white rounded-lg"

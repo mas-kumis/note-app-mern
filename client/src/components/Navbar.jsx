@@ -1,16 +1,22 @@
-import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../store/auth/authSlice";
-import { useLogoutMutation } from "../store/api/adminApiSlice";
-const Navbar = () => {
-  const adminInfo = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
-  const [logoutApiCall] = useLogoutMutation();
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import propTypes from "prop-types";
+import { toast } from "react-toastify";
+import axios from "axios";
 
+const Navbar = () => {
+  const adminInfo = localStorage.getItem("adminInfo");
+  const navigate = useNavigate;
   const logouthandler = async () => {
     try {
-      await logoutApiCall().unwrap();
-      dispatch(logout());
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      await axios.post("/api/admin/logout", config);
+      localStorage.removeItem("adminInfo");
+      navigate("/login");
+      toast.success("Logout Successful");
     } catch (err) {
       console.log(err);
     }
@@ -37,18 +43,22 @@ const Navbar = () => {
             {adminInfo ? (
               <button onClick={logouthandler}>Logout</button>
             ) : (
-              <button
+              <Link
                 to="/login"
                 className={({ isActive }) => (isActive ? "font-bold" : "")}
               >
                 Login
-              </button>
+              </Link>
             )}
           </div>
         </div>
       </nav>
     </>
   );
+};
+
+Navbar.propTypes = {
+  title: propTypes.string,
 };
 
 export default Navbar;

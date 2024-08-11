@@ -1,17 +1,20 @@
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import PropTypes from "prop-types";
 
 const PrivateRoute = ({ children }) => {
-  const { adminInfo } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   useEffect(() => {
+    const adminInfo = localStorage.getItem("adminInfo");
     if (!adminInfo) {
       navigate("/login");
     }
-  }, [adminInfo, navigate]);
+  }, [navigate]);
 
   return children;
 };
 
+PrivateRoute.propTypes = {
+  children: PropTypes.any,
+};
 export default PrivateRoute;
