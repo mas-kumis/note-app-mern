@@ -11,6 +11,7 @@ import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/RegisterPage";
 import Page from "./pages/Page";
 import CreatePage from "./pages/CreatePage";
+import PrivateRoute from "./pages/PrivateRoute";
 
 function App() {
   return (
@@ -19,7 +20,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/notes" element={<Page />} />
+        <Route
+          path="/notes"
+          element={
+            <PrivateRoute>
+              <Page />
+            </PrivateRoute>
+          }
+        />
         <Route path="/newnotes" element={<CreatePage />} />
       </Routes>
     </BrowserRouter>

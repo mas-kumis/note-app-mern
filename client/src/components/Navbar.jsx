@@ -1,6 +1,20 @@
 import { NavLink } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../store/auth/authSlice";
+import { useLogoutMutation } from "../store/api/adminApiSlice";
 const Navbar = () => {
+  const adminInfo = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const [logoutApiCall] = useLogoutMutation();
+
+  const logouthandler = async () => {
+    try {
+      await logoutApiCall().unwrap();
+      dispatch(logout());
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
       <nav className="bg-blue-400 w-screen h-[50px] px-[100px] flex items-center">
@@ -19,18 +33,17 @@ const Navbar = () => {
             >
               Home
             </NavLink>
-            <NavLink
-              to="/login"
-              className={({ isActive }) => (isActive ? "font-bold" : "")}
-            >
-              Login
-            </NavLink>
-            <NavLink
-              to="/register"
-              className={({ isActive }) => (isActive ? "font-bold" : "")}
-            >
-              Register
-            </NavLink>
+
+            {adminInfo ? (
+              <button onClick={logouthandler}>Logout</button>
+            ) : (
+              <button
+                to="/login"
+                className={({ isActive }) => (isActive ? "font-bold" : "")}
+              >
+                Login
+              </button>
+            )}
           </div>
         </div>
       </nav>

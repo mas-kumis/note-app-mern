@@ -17,17 +17,21 @@ const createAdmins = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Email already exists");
   }
+  // Hash Password
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
-  const newAdmin = await Admin.create({
-    name,
-    email,
-    password: hashedPassword,
-  });
+
   try {
+    // Buat Data di Database
+    const newAdmin = await Admin.create({
+      name,
+      email,
+      password: hashedPassword,
+    });
     const savedAdmin = await newAdmin.save();
-    const token = generateToken(res, savedAdmin._id);
+    // Cookies & Token
     generateToken(res, savedAdmin._id);
+    // Response
     res.status(200).json({
       message: "Admin created",
       _id: savedAdmin._id,
@@ -44,6 +48,25 @@ const createAdmins = asyncHandler(async (req, res) => {
 const getAdmins = asyncHandler(async (req, res) => {
   const admins = await Admin.find({});
   res.json(admins);
+});
+
+const login = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+  const admin = await Admin.findOne({ email });
+  if (admin && (await bcrypt.compare(password, admin.password))) {
+    res.cookie("jwt", generateToken(res, admin._id), { httpOnly: true });
+    res.status(200).json({
+      message: "Login Successful",
+      _id: admin._id,
+      username: admin.username,
+      email: admin.email,
+      password: admin.password,
+    });
+    return;
+  } else {
+    res.status(401);
+    throw new Error("Invalid credentials");
+  }
 });
 
 const getAdminsById = asyncHandler(async (req, res) => {
@@ -67,4 +90,9 @@ const deleteAdmins = asyncHandler(async (req, res) => {
   }
 });
 
-export { createAdmins, getAdmins, deleteAdmins, getAdminsById };
+const logout = asyncHandler(async (req, res) => {
+  res.cookie("jwt", "", { maxAge: 1 });
+  res.status(200).json({ message: "Logout Successful" });
+});
+
+export { createAdmins, getAdmins, deleteAdmins, getAdminsById, login, logout };

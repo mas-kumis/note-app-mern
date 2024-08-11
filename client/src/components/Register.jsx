@@ -1,6 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Register = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   return (
     <section className=" mt-[30px] w-full flex items-center justify-center">
       <div className="border border-gray-200 rounded-lg p-4 w-[600px] space-y-5 px-4 flex flex-col items-center">
@@ -12,6 +17,8 @@ const Register = () => {
           <input
             type="text"
             placeholder="Enter your username"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             className="border border-gray-400 p-2 rounded-lg w-[300px]"
           />
         </div>
@@ -22,6 +29,8 @@ const Register = () => {
           <input
             type="email"
             placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="border border-gray-400 p-2 rounded-lg w-[300px]"
           />
         </div>
@@ -31,8 +40,9 @@ const Register = () => {
           </label>
           <input
             type="text"
-            id="username"
             placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="border border-gray-400 p-2 rounded-lg w-[300px]"
           />
         </div>
@@ -42,8 +52,9 @@ const Register = () => {
           </label>
           <input
             type="text"
-            id="username"
             placeholder="Confirm your password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             className="border border-gray-400 p-2 rounded-lg w-[300px]"
           />
         </div>
