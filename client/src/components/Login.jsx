@@ -64,7 +64,7 @@ const Login = () => {
         </div>
         {/*div for input password */}
         <div className="flex flex-col">
-          <label className="text-gray-500">Password</label>
+          <label className="text-gray-500">COnfirm Pasword</label>
           <input
             type="password"
             placeholder="Enter your password"
