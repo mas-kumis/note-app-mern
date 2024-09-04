@@ -1,6 +1,7 @@
 import logo from "../assets/logo.png";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { IoCloseSharp } from "react-icons/io5";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -13,11 +14,15 @@ const Header = () => {
         </div>
         <div className="block md:hidden">
           <button onClick={() => setOpen(!open)}>
-            <GiHamburgerMenu
-              width={50}
-              height={50}
-              className="cursor-pointer"
-            />
+            {open ? (
+              <IoCloseSharp width={50} height={50} className="cursor-pointer" />
+            ) : (
+              <GiHamburgerMenu
+                width={50}
+                height={50}
+                className="cursor-pointer"
+              />
+            )}
           </button>
         </div>
         <ul className="  space-x-4 items-center hidden md:flex">
