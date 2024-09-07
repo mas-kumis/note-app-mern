@@ -8,6 +8,7 @@ const HomePage = () => {
       <MainLayout>
         <Jumbotron />
         <RecentBlog />
+        <h1> Hello World </h1>
       </MainLayout>
     </div>
   );
